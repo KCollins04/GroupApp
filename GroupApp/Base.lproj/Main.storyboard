@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--HomeScreen-->
         <scene sceneID="3u8-hH-gYt">
             <objects>
                 <viewController id="B0K-k4-C8V" customClass="ViewController" customModule="GroupApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -50,13 +50,13 @@
                         <viewLayoutGuide key="safeArea" id="Riw-kM-mCy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="EVA-uF-X6U"/>
+                    <navigationItem key="navigationItem" title="HomeScreen" id="EVA-uF-X6U"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCw-2U-Z9J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1110.6870229007634" y="3.5211267605633805"/>
         </scene>
-        <!--Picker View Controller-->
+        <!--PickerView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PickerViewController" customModule="GroupApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -81,9 +81,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="MN3-iq-7uh">
-                        <nil key="title"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="PickerView" id="MN3-iq-7uh"/>
                     <connections>
                         <outlet property="pickerViewOutlet" destination="fhb-Oy-3bf" id="GuG-ph-G5x"/>
                     </connections>
@@ -92,7 +90,7 @@
             </objects>
             <point key="canvasLocation" x="2013" y="4"/>
         </scene>
-        <!--Favorite View Controller-->
+        <!--Favorite Food-->
         <scene sceneID="nIy-km-fan">
             <objects>
                 <viewController id="tKN-pl-vae" customClass="FavoriteViewController" customModule="GroupApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -135,7 +133,11 @@
                         <viewLayoutGuide key="safeArea" id="gfv-UI-zbF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="uoa-OY-uZi"/>
+                    <navigationItem key="navigationItem" title="Favorite Food" id="uoa-OY-uZi"/>
+                    <connections>
+                        <outlet property="tabkeViewOutlet" destination="1XA-Ad-8cJ" id="Mf6-Q2-i6C"/>
+                        <outlet property="tableViewOutlet" destination="1XA-Ad-8cJ" id="Vyn-hi-MjU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g63-cx-YIe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
