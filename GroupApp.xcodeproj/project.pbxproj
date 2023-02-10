@@ -17,6 +17,9 @@
 		549988A729952CEF00A7FABB /* GroupAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549988A629952CEF00A7FABB /* GroupAppTests.swift */; };
 		549988B129952CEF00A7FABB /* GroupAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549988B029952CEF00A7FABB /* GroupAppUITests.swift */; };
 		549988B329952CEF00A7FABB /* GroupAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549988B229952CEF00A7FABB /* GroupAppUITestsLaunchTests.swift */; };
+		54BA327E29967E27007C145F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA327D29967E27007C145F /* FavoriteViewController.swift */; };
+		54BA328029967E49007C145F /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA327F29967E49007C145F /* PickerViewController.swift */; };
+		54BA328229967E7D007C145F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA328129967E7D007C145F /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		549988AC29952CEF00A7FABB /* GroupAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		549988B029952CEF00A7FABB /* GroupAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAppUITests.swift; sourceTree = "<group>"; };
 		549988B229952CEF00A7FABB /* GroupAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		54BA327D29967E27007C145F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		54BA327F29967E49007C145F /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		54BA328129967E7D007C145F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,9 @@
 				5499888E29952CEE00A7FABB /* SceneDelegate.swift */,
 				5499889029952CEE00A7FABB /* ViewController.swift */,
 				5499889229952CEE00A7FABB /* Main.storyboard */,
+				54BA328129967E7D007C145F /* InfoViewController.swift */,
+				54BA327F29967E49007C145F /* PickerViewController.swift */,
+				54BA327D29967E27007C145F /* FavoriteViewController.swift */,
 				5499889829952CEE00A7FABB /* Assets.xcassets */,
 				5499889A29952CEE00A7FABB /* LaunchScreen.storyboard */,
 				5499889D29952CEE00A7FABB /* Info.plist */,
@@ -261,10 +270,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54BA328029967E49007C145F /* PickerViewController.swift in Sources */,
 				5499889129952CEE00A7FABB /* ViewController.swift in Sources */,
 				5499888D29952CEE00A7FABB /* AppDelegate.swift in Sources */,
+				54BA328229967E7D007C145F /* InfoViewController.swift in Sources */,
 				5499888F29952CEE00A7FABB /* SceneDelegate.swift in Sources */,
 				5499889729952CEE00A7FABB /* GroupApp.xcdatamodeld in Sources */,
+				54BA327E29967E27007C145F /* FavoriteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
