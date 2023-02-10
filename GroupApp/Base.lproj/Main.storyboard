@@ -83,14 +83,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="MN3-iq-7uh">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a Restorant " textAlignment="natural" minimumFontSize="17" id="L88-vW-H7e">
-                            <rect key="frame" x="72.666666666666686" y="5" width="248" height="34"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="sZv-zX-CBn"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="pickerViewOutlet" destination="fhb-Oy-3bf" id="GuG-ph-G5x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

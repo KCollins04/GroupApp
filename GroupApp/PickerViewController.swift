@@ -7,23 +7,27 @@
 
 import UIKit
 
-class PickerViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
 
-    /*
-    // MARK: - Navigation
+    @IBOutlet weak var pickerViewOutlet: UIPickerView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        pickerViewOutlet.delegate = self
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+    //number of the col
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    //number row
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        <#code#>
+    }
+
+    
 
 }
