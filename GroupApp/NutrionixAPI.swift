@@ -10,8 +10,9 @@ import Foundation
 struct foodItem: Codable{
     let calories: Int
     let item_id: String
-    let serving_quanitity: Int
+    let serving_qty: Int
     let serving_unit: String
+    let item_name: String
 }
 
 struct listReponse: Codable{
@@ -19,20 +20,32 @@ struct listReponse: Codable{
     let total_hits: Int
 }
 
-func getMenu(_ id: String) -> [foodItem] {
-    let requestUrl = "https://www.omdbapi.com/?i=\(id)&plot=full&type=movie&apikey=65da5fbe" // Encodes the URL to get the movie info by IMDB ID
+
+func getMenu(_ id: String) throws -> [foodItem] {
+    var menuItems: [foodItem] = []
+    let requestUrl = "https://www.nutritionix.com/nixapi/brands/\(id)/items/1?limit=15&search="
     let url = URL(string: requestUrl)
     let data = (try? Data(contentsOf: url!))!
     do {
         let res = try JSONDecoder().decode(listReponse.self, from: data)
-        
-        // Sets the variables to be gotten by the prepare for segue function
-        /*selectedTitle = res.Title
-        selectedImageUrl = res.Poster
-        selectedSummary = res.Plot
-        selectedRating = res.imdbRating
-        self.performSegue(withIdentifier: "movieDetails", sender: self)*/
+        menuItems.append(contentsOf: res.items)
+        print(res.total_hits/15 + (res.total_hits % 15 == 0 ? 0 : 1))
+        for page in 1...res.total_hits/15 + (res.total_hits % 15 == 0 ? 0 : 1){
+            let requestUrl = "https://www.nutritionix.com/nixapi/brands/\(id)/items/\(page)?limit=15&search="
+            let url = URL(string: requestUrl)
+            let data = (try? Data(contentsOf: url!))!
+            do {
+                let res = try JSONDecoder().decode(listReponse.self, from: data)
+                menuItems.append(contentsOf: res.items)
+            } catch let error {
+                print(error)
+                throw error
+            }
+        }
+        return menuItems
     } catch let error {
         print(error)
+        throw error
     }
 }
+

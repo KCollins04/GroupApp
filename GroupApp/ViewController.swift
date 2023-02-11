@@ -15,6 +15,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        do{
+            try print(getMenu("513fbc1283aa2dc80c000015"))
+        } catch let error{
+            print(error)
+        }
+
     }
 
     @IBAction func getCurrentLocationAction(_ sender: Any) {

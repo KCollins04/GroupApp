@@ -25,7 +25,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     //number row
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        <#code#>
+        return 1
     }
 
     
