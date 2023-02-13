@@ -15,11 +15,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        do{
-            try print(getMenu("513fbc1283aa2dc80c000015"))
+        /*do{
+            try print(getMenu("624af77b62f77a3958eb125b"))
         } catch let error{
             print(error)
-        }
+        }*/
+        getRestaurant(42.367173794047666,-88.26711087303146, 100)
 
     }
 
