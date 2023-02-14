@@ -58,34 +58,35 @@ struct restaurant: Codable{
 }
 
 struct restaurantsReponse: Codable{
-    let items: [foodItem]
+    let items: [restaurant]
     let total_hits: Int
 }
+
+enum apiError: Error {
+    case noConnection
+    case unknownError
+}
+
 // Gets restaurants list of restaurants around a latitude and longitude; Distance and limit are optional
-func getRestaurant(_ latitude: Float, _ longitude: Float, _ distance: Int = 50, _ limit: Int = 20) throws -> [restaurant] {
+func getRestaurant(_ latitude: Float, _ longitude: Float, _ distance: Int = 50, _ limit: Int = 20) async -> [restaurant] {
     let urlString = "https://trackapi.nutritionix.com/v2/locations?ll=\(latitude)%2C%20\(longitude)&distance=\(distance)&limit=\(limit)"
     print(urlString)
     let session = URLSession.shared
-            let url = NSURL(string: urlString)!
+    let url = NSURL(string: urlString)!
     let request = NSMutableURLRequest(url: url as URL)
-
-            request.setValue("0033f8cd", forHTTPHeaderField: "x-app-id")
-            request.setValue("a7480919025cbc677f4bdb13e6338b71", forHTTPHeaderField: "x-app-key") // TODO: .env for secret key?
-
-    session.dataTask(with: request as URLRequest){(data: Data?,response: URLResponse?, error: Error?) -> Void in
-
-                if let responseData = data
-                {
-                    do{
-                        let json = try JSONSerialization.jsonObject(with: responseData as Data, options: JSONSerialization.ReadingOptions.allowFragments)
-                        print(json)
-                        
-                    }catch{
-                        print("Could not serialize")
-                    }
-                }
-
-            }.resume()
+    
+    request.setValue("0033f8cd", forHTTPHeaderField: "x-app-id")
+    request.setValue("a7480919025cbc677f4bdb13e6338b71", forHTTPHeaderField: "x-app-key") // TODO: .env for secret key?
+    var res: restaurantsReponse
+    
+    do{
+        let (data, _) = try await URLSession.shared.data(from: url as URL)
+        res = try JSONDecoder().decode(restaurantsReponse.self, from: data)
+        return res.items
+    } catch{
+        print("ERROR")
+        
+    }
         }
 
 

@@ -20,7 +20,11 @@ class ViewController: UIViewController {
         } catch let error{
             print(error)
         }*/
-        getRestaurant(42.367173794047666,-88.26711087303146, 100)
+        do{
+          try print(getRestaurant(42.367173794047666,-88.26711087303146, 100))
+        } catch{
+            print("Unknown error")
+        }
 
     }
 
