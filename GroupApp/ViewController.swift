@@ -6,25 +6,24 @@
 //
 
 import UIKit
+import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
 
     @IBOutlet weak var restorantInputOutlet: UITextField!
+    @IBOutlet weak var mapOutlet: MKMapView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        do{
-            try print(getMenu("513fbc1283aa2dc80c000015"))
-        } catch let error{
-            print(error)
-        }
-
+        
+        mapOutlet.delegate = self
+        
+    
+        
     }
 
-    @IBAction func getCurrentLocationAction(_ sender: Any) {
-    }
+   
     
     
     
