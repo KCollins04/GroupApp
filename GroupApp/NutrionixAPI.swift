@@ -8,7 +8,7 @@
 import Foundation
 
 struct foodItem: Codable{
-    let calories: Int
+    let calories: Double
     let item_id: String
     let serving_qty: Int
     let serving_unit: String
@@ -21,19 +21,28 @@ struct listReponse: Codable{
 }
 
 // Gets the list of menu items from a restauarant ID (from getRestaurant function)
-func getMenu(_ id: String) throws -> [foodItem] { // TODO: Make asynchronous
+func getMenu(_ id: String) async throws -> [foodItem] { // TODO: Make asynchronous
     var menuItems: [foodItem] = []
-    let requestUrl = "https://www.nutritionix.com/nixapi/brands/\(id)/items/1?limit=15&search="
-    let url = URL(string: requestUrl)
-    let data = (try? Data(contentsOf: url!))!
-    do {
-        let res = try JSONDecoder().decode(listReponse.self, from: data)
+
+    let urlString = "https://www.nutritionix.com/nixapi/brands/\(id)/items/1?limit=15&search="
+    print(urlString)
+    let url = NSURL(string: urlString)!
+    let request = NSMutableURLRequest(url: url as URL)
+    
+    var res: listReponse
+    
+    do{
+        let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
+        print(String(data: data, encoding: .utf8)!)
+        res = try JSONDecoder().decode(listReponse.self, from: data)
         menuItems.append(contentsOf: res.items)
-        print(res.total_hits/15 + (res.total_hits % 15 == 0 ? 0 : 1))
         for page in 1...res.total_hits/15 + (res.total_hits % 15 == 0 ? 0 : 1){
-            let requestUrl = "https://www.nutritionix.com/nixapi/brands/\(id)/items/\(page)?limit=15&search="
-            let url = URL(string: requestUrl)
-            let data = (try? Data(contentsOf: url!))!
+            let urlString = "https://www.nutritionix.com/nixapi/brands/\(id)/items/\(page)?limit=15&search="
+            print(urlString)
+            let url = NSURL(string: urlString)!
+            let request = NSMutableURLRequest(url: url as URL)
+            let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
+
             do {
                 let res = try JSONDecoder().decode(listReponse.self, from: data)
                 menuItems.append(contentsOf: res.items)
@@ -43,23 +52,33 @@ func getMenu(_ id: String) throws -> [foodItem] { // TODO: Make asynchronous
             }
         }
         return menuItems
-    } catch let error {
+    } catch{
         print(error)
-        throw error
+        throw apiError.unknownError
+        
     }
 }
 
 struct restaurant: Codable{
-    let calories: Int
-    let item_id: String
-    let serving_qty: Int
-    let serving_unit: String
-    let item_name: String
+    let name: String
+    let address: String
+    let address2: String?
+    let city: String
+    let country: String
+    let zip: String
+    let phone: String?
+    let website: String?
+    let guide: String?
+    let id: Int
+    let lat: Double
+    let lng: Double
+    let created_at: String
+    let updated_at: String
+    let distance_km: Float
 }
 
 struct restaurantsReponse: Codable{
-    let items: [restaurant]
-    let total_hits: Int
+    let locations: [restaurant]
 }
 
 enum apiError: Error {
@@ -68,10 +87,9 @@ enum apiError: Error {
 }
 
 // Gets restaurants list of restaurants around a latitude and longitude; Distance and limit are optional
-func getRestaurant(_ latitude: Float, _ longitude: Float, _ distance: Int = 50, _ limit: Int = 20) async -> [restaurant] {
+func getRestaurant(_ latitude: Float, _ longitude: Float, _ distance: Int = 50, _ limit: Int = 20) async throws -> [restaurant] {
     let urlString = "https://trackapi.nutritionix.com/v2/locations?ll=\(latitude)%2C%20\(longitude)&distance=\(distance)&limit=\(limit)"
     print(urlString)
-    let session = URLSession.shared
     let url = NSURL(string: urlString)!
     let request = NSMutableURLRequest(url: url as URL)
     
@@ -80,13 +98,16 @@ func getRestaurant(_ latitude: Float, _ longitude: Float, _ distance: Int = 50, 
     var res: restaurantsReponse
     
     do{
-        let (data, _) = try await URLSession.shared.data(from: url as URL)
+        let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
+        print(String(data: data, encoding: .utf8)!)
         res = try JSONDecoder().decode(restaurantsReponse.self, from: data)
-        return res.items
+        return res.locations
     } catch{
-        print("ERROR")
+        print(error)
+        throw apiError.unknownError
         
     }
+    
         }
 
 
