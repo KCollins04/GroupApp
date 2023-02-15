@@ -20,11 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapOutlet.delegate = self
         
         // Do any additional setup after loading the view.
-        /*do{
-            try print(getMenu("624af77b62f77a3958eb125b"))
-        } catch let error{
-            print(error)
-        }*/
+  
         Task {
           do{
                 try await print(getMenu("513fbc1283aa2dc80c000021"))
