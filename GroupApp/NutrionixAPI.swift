@@ -25,7 +25,6 @@ func getMenu(_ id: String) async throws -> [foodItem] { // TODO: Make asynchrono
     var menuItems: [foodItem] = []
 
     let urlString = "https://www.nutritionix.com/nixapi/brands/\(id)/items/1?limit=15&search="
-    print(urlString)
     let url = NSURL(string: urlString)!
     let request = NSMutableURLRequest(url: url as URL)
     
@@ -33,12 +32,10 @@ func getMenu(_ id: String) async throws -> [foodItem] { // TODO: Make asynchrono
     
     do{
         let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
-        print(String(data: data, encoding: .utf8)!)
         res = try JSONDecoder().decode(listReponse.self, from: data)
         menuItems.append(contentsOf: res.items)
         for page in 1...res.total_hits/15 + (res.total_hits % 15 == 0 ? 0 : 1){
             let urlString = "https://www.nutritionix.com/nixapi/brands/\(id)/items/\(page)?limit=15&search="
-            print(urlString)
             let url = NSURL(string: urlString)!
             let request = NSMutableURLRequest(url: url as URL)
             let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
@@ -89,7 +86,6 @@ enum apiError: Error {
 // Gets restaurants list of restaurants around a latitude and longitude; Distance and limit are optional
 func getRestaurant(_ latitude: Float, _ longitude: Float, _ distance: Int = 50, _ limit: Int = 20) async throws -> [restaurant] {
     let urlString = "https://trackapi.nutritionix.com/v2/locations?ll=\(latitude)%2C%20\(longitude)&distance=\(distance)&limit=\(limit)"
-    print(urlString)
     let url = NSURL(string: urlString)!
     let request = NSMutableURLRequest(url: url as URL)
     
@@ -99,7 +95,6 @@ func getRestaurant(_ latitude: Float, _ longitude: Float, _ distance: Int = 50, 
     
     do{
         let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
-        print(String(data: data, encoding: .utf8)!)
         res = try JSONDecoder().decode(restaurantsReponse.self, from: data)
         return res.locations
     } catch{
