@@ -42,6 +42,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func rearchAction(_ sender: UIBarButtonItem) {
         let request = MKLocalSearch.Request()
+        //User Input search
         request.naturalLanguageQuery = restorantInputOutlet.text
         let span = MKCoordinateSpan(
             latitudeDelta: 0.05, longitudeDelta: 0.05)
