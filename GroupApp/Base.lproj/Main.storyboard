@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--HomeScreen-->
+        <!--View Controller-->
         <scene sceneID="3u8-hH-gYt">
             <objects>
                 <viewController id="B0K-k4-C8V" customClass="ViewController" customModule="GroupApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,40 +17,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Restorant " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6b-W3-bNU">
-                                <rect key="frame" x="40" y="454" width="313" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="llT-mI-Rrv">
-                                <rect key="frame" x="40" y="146" width="313" height="293"/>
+                                <rect key="frame" x="0.0" y="120" width="411" height="732"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHu-lE-766">
-                                <rect key="frame" x="40" y="537" width="119" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Favorites "/>
-                                <connections>
-                                    <segue destination="tKN-pl-vae" kind="show" id="aUD-fg-m61"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hs-26-a0m">
-                                <rect key="frame" x="213" y="537" width="119" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Enter"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showMenu" id="e1M-5b-4Ca"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Riw-kM-mCy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="HomeScreen" id="EVA-uF-X6U"/>
+                    <navigationItem key="navigationItem" id="EVA-uF-X6U">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="bookmarks" id="6PH-N9-4rT"/>
+                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Restorant " textAlignment="natural" minimumFontSize="17" id="v6b-W3-bNU">
+                            <rect key="frame" x="124.66666666666669" y="5" width="144" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="lnR-Eu-jsk">
+                            <connections>
+                                <action selector="rearchAction:" destination="B0K-k4-C8V" id="3Wi-7z-IeP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapOutlet" destination="llT-mI-Rrv" id="1Kh-dd-WZd"/>
                         <outlet property="restorantInputOutlet" destination="v6b-W3-bNU" id="Z9j-4a-Tzp"/>
@@ -69,7 +59,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhb-Oy-3bf">
-                                <rect key="frame" x="-2" y="176" width="394" height="367"/>
+                                <rect key="frame" x="-1" y="176" width="394" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhf-Y1-eOG">
@@ -87,7 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="PickerView" id="MN3-iq-7uh"/>
                     <connections>
-                        <outlet property="pickerViewOutlet" destination="fhb-Oy-3bf" id="grA-Fs-SVZ"/>
+                        <outlet property="pickerViewOutlet" destination="fhb-Oy-3bf" id="GuG-ph-G5x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -152,7 +142,7 @@
             <objects>
                 <viewController id="iLZ-yH-BEK" customClass="InfoViewController" customModule="GroupApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H1H-Y9-DS1">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vBf-fH-bGe">
