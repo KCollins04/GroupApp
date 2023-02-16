@@ -32,6 +32,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMenu" {
+            let controller = segue.destination as! PickerViewController
+            Task{
+                do{
+                    controller.menu = try await getMenu("513fbc1283aa2dc80c000021")
+                } catch{
+                    print(error)
+                }
+            }
+        }
+    }
+
    
     
     

@@ -12,6 +12,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     @IBOutlet weak var pickerViewOutlet: UIPickerView!
     
+    var menu: [foodItem] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         pickerViewOutlet.delegate = self
@@ -19,14 +20,15 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     //number of the col
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+    func numberOfComponents(in pickerView: UIPickerView)  -> Int {
+        return 4
     }
     
     //number row
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 1
     }
+    
 
     
 
