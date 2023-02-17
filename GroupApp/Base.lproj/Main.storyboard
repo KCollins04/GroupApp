@@ -28,7 +28,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="EVA-uF-X6U">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="bookmarks" id="6PH-N9-4rT"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="bookmarks" id="6PH-N9-4rT">
+                            <connections>
+                                <segue destination="tKN-pl-vae" kind="show" id="ovz-3Y-pjS"/>
+                            </connections>
+                        </barButtonItem>
                         <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Restorant " textAlignment="natural" minimumFontSize="17" id="v6b-W3-bNU">
                             <rect key="frame" x="124.66666666666669" y="5" width="144" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -78,9 +82,18 @@
                     <navigationItem key="navigationItem" title="PickerView" id="MN3-iq-7uh"/>
                     <connections>
                         <outlet property="pickerViewOutlet" destination="fhb-Oy-3bf" id="GuG-ph-G5x"/>
+                        <outlet property="searchDisplayController" destination="qO8-7f-lET" id="tEN-YO-dpi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="qO8-7f-lET">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="oEA-zW-v1w"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="89j-CE-7o2"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="4cb-Qd-Gih"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="O8j-LK-6Xu"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2013" y="4"/>
         </scene>
