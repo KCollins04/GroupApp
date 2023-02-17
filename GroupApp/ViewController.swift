@@ -73,7 +73,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         mapOutlet.setRegion(region, animated: true)
 
                         newPin.coordinate = location.coordinate
-                        
+                    newPin.title = item.name
                         mapOutlet.addAnnotation(newPin)
                 }
                 
