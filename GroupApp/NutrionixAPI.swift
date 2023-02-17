@@ -84,7 +84,7 @@ enum apiError: Error {
 }
 
 // Gets restaurants list of restaurants around a latitude and longitude; Distance and limit are optional
-func getRestaurant(_ latitude: Float, _ longitude: Float, _ distance: Int = 50, _ limit: Int = 20) async throws -> [restaurant] {
+func getRestaurant(_ latitude: Double, _ longitude: Double, _ distance: Int = 50, _ limit: Int = 20) async throws -> [restaurant] {
     let urlString = "https://trackapi.nutritionix.com/v2/locations?ll=\(latitude)%2C%20\(longitude)&distance=\(distance)&limit=\(limit)"
     let url = NSURL(string: urlString)!
     let request = NSMutableURLRequest(url: url as URL)

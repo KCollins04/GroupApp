@@ -29,12 +29,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
         mapOutlet.showsUserLocation = true
         
+        
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Current location of the user
         let center = locationManager.location!.coordinate
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: center, span: span)
         mapOutlet.setRegion(region, animated: true)
-        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,24 +58,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @IBAction func rearchAction(_ sender: UIBarButtonItem) {
-        let request = MKLocalSearch.Request()
-        //User Input search
-        request.naturalLanguageQuery = restorantInputOutlet.text
-        let span = MKCoordinateSpan(
-            latitudeDelta: 0.05, longitudeDelta: 0.05)
-        request.region = MKCoordinateRegion(center: current.coordinate, span: span)
-        
-        let search = MKLocalSearch(request: request)
-        search.start { (response, error) in
-            guard let response = response
-            else{return}
-            for mapItem in response.mapItems{
-                self.restorant.append(mapItem)
-                let annoatation = MKPointAnnotation()
-                annoatation.coordinate = mapItem.placemark.coordinate
-                annoatation.title = mapItem.name
-                self.mapOutlet.addAnnotation(annoatation)
+        let coordinates = locationManager.location!.coordinate
+        Task{
+            do{
+                let nearby = try await getRestaurant(coordinates.latitude, coordinates.longitude,1000,50)
+                for item in nearby {
+                    print(item.name,item.lat,item.lng,item.id)
+                    let location = CLLocation(latitude: item.lat,longitude: item.lng)
+                    let newPin = MKPointAnnotation()
+                        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+
+                        //set region on the map
+                        mapOutlet.setRegion(region, animated: true)
+
+                        newPin.coordinate = location.coordinate
+                        mapOutlet.addAnnotation(newPin)
+                }
                 
+            } catch{
+                print(error)
             }
         }
     }
