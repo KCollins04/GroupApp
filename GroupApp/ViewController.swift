@@ -88,6 +88,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         print("button pressed", nearbyRestaurants[button.tag])
     }
     
+    //search Restorant
     @IBAction func rearchAction(_ sender: UIBarButtonItem) {
         let coordinates = locationManager.location!.coordinate
         Task{
@@ -102,12 +103,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
 
                         //set region on the map
+                    
+                    
                         mapOutlet.setRegion(region, animated: true)
-
+                    // search item and it will pin that item
+                    if restorantInputOutlet.text == item.name{
                         newPin.coordinate = location.coordinate
-                    newPin.title = item.name
-                    newPin.subtitle = String(index)
+                        newPin.title = item.name
+                        newPin.subtitle = String(index)
                         mapOutlet.addAnnotation(newPin)
+                    }
+
+                      
                 }
                 
             } catch{
