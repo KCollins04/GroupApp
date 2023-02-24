@@ -113,9 +113,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         newPin.subtitle = String(index)
                         mapOutlet.addAnnotation(newPin)
                     }
+                    if restorantInputOutlet.text != newPin.title{
+                        let allAnnotations = self.mapOutlet.annotations
+                        self.mapOutlet.removeAnnotations(allAnnotations)
+                    }
+                    
 
                       
                 }
+            
+               
                 
             } catch{
                 print(error)
