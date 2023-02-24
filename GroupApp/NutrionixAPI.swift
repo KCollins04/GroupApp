@@ -72,6 +72,7 @@ struct restaurant: Codable{
     let created_at: String
     let updated_at: String
     let distance_km: Float
+    let brand_id: String
 }
 
 struct restaurantsReponse: Codable{
