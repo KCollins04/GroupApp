@@ -7,29 +7,35 @@
 
 import UIKit
 
-class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
     
 
-    @IBOutlet weak var pickerViewOutlet: UIPickerView!
+    @IBOutlet weak var cellTableViewOutlet: UITableView!
     
-    var menu: [foodItem] = []
+    @IBOutlet weak var imageOutlet: UIImageView!
+    @IBOutlet weak var nameOutlet: UITextField!
+    
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        pickerViewOutlet.delegate = self
+        cellTableViewOutlet.delegate = self
+        cellTableViewOutlet.dataSource = self
+
 
     }
     
-    //number of the col
-    func numberOfComponents(in pickerView: UIPickerView)  -> Int {
-        return 4
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
     }
     
-    //number row
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 1
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+  
+    
+    @IBAction func randomAction(_ sender: UIBarButtonItem) {
     }
     
-
-    
-
 }
