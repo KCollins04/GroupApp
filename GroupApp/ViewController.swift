@@ -55,9 +55,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
 
-    func mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation) {
-        print("test")
-    }
+  
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // 2
         let identifier = "Restuarant"
@@ -90,6 +88,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     //search Restorant
     @IBAction func rearchAction(_ sender: UIBarButtonItem) {
+        let allAnnotations = self.mapOutlet.annotations
+        self.mapOutlet.removeAnnotations(allAnnotations)
         let coordinates = locationManager.location!.coordinate
         Task{
             do{
@@ -113,10 +113,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         newPin.subtitle = String(index)
                         mapOutlet.addAnnotation(newPin)
                     }
-                    if restorantInputOutlet.text != newPin.title{
-                        let allAnnotations = self.mapOutlet.annotations
-                        self.mapOutlet.removeAnnotations(allAnnotations)
-                    }
+                   
                     
 
                       
@@ -124,11 +121,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
                
                 
-            } catch{
+            }
+            catch{
                 print(error)
             }
         }
     }
+    
+    
+    
     
 }
 
