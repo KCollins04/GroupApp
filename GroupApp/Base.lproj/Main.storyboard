@@ -47,7 +47,7 @@
                     <connections>
                         <outlet property="mapOutlet" destination="llT-mI-Rrv" id="1Kh-dd-WZd"/>
                         <outlet property="restorantInputOutlet" destination="v6b-W3-bNU" id="Z9j-4a-Tzp"/>
-                        <segue destination="BYZ-38-t0r" kind="show" id="8ZD-nl-smD"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showMenu" id="d5K-3U-VGp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCw-2U-Z9J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
