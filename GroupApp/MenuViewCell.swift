@@ -9,6 +9,10 @@ import UIKit
 
 class MenuViewCell: UITableViewCell {
 
+    @IBOutlet weak var imageItem: UIImageView!
     
 
+    @IBOutlet weak var nameItemOutlet: UITextField!
+    
+    
 }

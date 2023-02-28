@@ -66,7 +66,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="170" id="wvw-aY-PeT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="170" id="wvw-aY-PeT" customClass="MenuViewCell" customModule="GroupApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wvw-aY-PeT" id="ep9-Y6-Ups">
@@ -99,6 +99,10 @@
                                                 <constraint firstItem="gk5-ji-mrZ" firstAttribute="leading" secondItem="ep9-Y6-Ups" secondAttribute="leading" id="dCV-Dc-7bV"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageItem" destination="3T7-M4-r91" id="bfq-Hy-70N"/>
+                                            <outlet property="nameItemOutlet" destination="r0q-UB-Kmh" id="clz-BB-XkM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

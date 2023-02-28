@@ -14,10 +14,7 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var cellTableViewOutlet: UITableView!
     
-    @IBOutlet weak var imageOutlet: UIImageView!
-    @IBOutlet weak var nameOutlet: UITextField!
-    
-    
+    var menu: [foodItem] = []
     override func viewDidLoad() {
         cellTableViewOutlet.delegate = self
         cellTableViewOutlet.dataSource = self
@@ -38,6 +35,10 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
     
     @IBAction func randomAction(_ sender: UIBarButtonItem) {
+    }
+    
+    func menuLoaded(){
+        
     }
     
 }
