@@ -58,33 +58,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
   
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        // 2
-        let identifier = "Restuarant"
-
-        // 3
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-
-        if annotationView == nil {
-            //4
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.canShowCallout = true
-
-            // 5
-            let btn = UIButton(type: .detailDisclosure)
-            annotationView?.rightCalloutAccessoryView = btn
-            btn.tag = Int(annotation.subtitle!!)!
-            btn.addTarget(self, action: #selector(restaurantClicked), for: .touchDown)
-
-        } else {
-            // 6
-            annotationView?.annotation = annotation
+            // 2
+            let identifier = "Restuarant"
+            // 3
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            if annotationView == nil {
+                //4
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView?.canShowCallout = true
+                // 5
+                let btn = UIButton(type: .detailDisclosure)
+                annotationView?.rightCalloutAccessoryView = btn
+                btn.tag = Int(annotation.subtitle!!)!
+                btn.addTarget(self, action: #selector(restaurantClicked), for: .touchDown)
+            } else {
+                // 6
+                annotationView?.annotation = annotation
+            }
+            return annotationView
         }
-
-        return annotationView
-    }
     
     @objc func restaurantClicked(_ button: UIButton) {
         print("button pressed", nearbyRestaurants[button.tag])
+        self.performSegue(withIdentifier: "showMenu", sender: self)
     }
     
     //search Restorant
@@ -108,7 +104,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                     
                         mapOutlet.setRegion(region, animated: true)
                     // search item and it will pin that item
-                    if restorantInputOutlet.text == item.name{
+                    if restorantInputOutlet.text == item.name || restorantInputOutlet.text == ""{
                         newPin.coordinate = location.coordinate
                         newPin.title = item.name
                         newPin.subtitle = String(index)
