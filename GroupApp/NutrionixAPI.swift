@@ -39,7 +39,7 @@ func getMenu(_ id: String) async throws -> [foodItem] { // TODO: Make asynchrono
             let url = NSURL(string: urlString)!
             let request = NSMutableURLRequest(url: url as URL)
             let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
-
+            print("\(page) out of \(res.total_hits/15)")
             do {
                 let res = try JSONDecoder().decode(listReponse.self, from: data)
                 menuItems.append(contentsOf: res.items)

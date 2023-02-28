@@ -28,7 +28,10 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! MenuViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as? MenuViewCell else {print("error")
+            
+            return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "ItemCell")
+        }
         
         let foodItem = menu[indexPath.row]
         cell.nameItemOutlet?.text = foodItem.item_name
