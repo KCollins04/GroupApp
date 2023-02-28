@@ -24,12 +24,14 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return menu.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! MenuViewCell
         
+        let foodItem = menu[indexPath.row]
+        cell.nameItemOutlet?.text = foodItem.item_name
         return cell
     }
   
@@ -38,7 +40,7 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func menuLoaded(){
-        
+        cellTableViewOutlet.reloadData()
     }
     
 }
