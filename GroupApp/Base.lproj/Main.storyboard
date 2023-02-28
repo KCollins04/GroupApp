@@ -114,7 +114,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="PickerView" id="MN3-iq-7uh">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Z7V-1b-FhO">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="oiF-Lt-PEz">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="oiF-Lt-PEz">
                                 <rect key="frame" x="289.66666666666669" y="5" width="87.333333333333314" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -127,9 +127,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cellTableViewOutlet" destination="amW-JW-Hex" id="Sx7-eP-Fbl"/>
-                        <outlet property="imageItem" destination="3T7-M4-r91" id="i5v-sS-02F"/>
-                        <outlet property="imageOutlet" destination="3T7-M4-r91" id="zK6-4T-vw1"/>
-                        <outlet property="nameOutlet" destination="r0q-UB-Kmh" id="tXd-yO-7E4"/>
                         <segue destination="iLZ-yH-BEK" kind="show" id="cYY-9L-U7p"/>
                     </connections>
                 </viewController>

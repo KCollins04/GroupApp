@@ -48,6 +48,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             Task{
                 do{
                     controller.menu = try await getMenu("513fbc1283aa2dc80c000021")
+                    controller.menuLoaded()
                 } catch{
                     print(error)
                 }

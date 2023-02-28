@@ -20,6 +20,7 @@
 		54BA327E29967E27007C145F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA327D29967E27007C145F /* FavoriteViewController.swift */; };
 		54BA328029967E49007C145F /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA327F29967E49007C145F /* PickerViewController.swift */; };
 		54BA328229967E7D007C145F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA328129967E7D007C145F /* InfoViewController.swift */; };
+		960C253C29AE399B006D9804 /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C253B29AE399B006D9804 /* MenuViewCell.swift */; };
 		96A95C4A2996848200162179 /* NutrionixAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A95C492996848200162179 /* NutrionixAPI.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		54BA327D29967E27007C145F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		54BA327F29967E49007C145F /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		54BA328129967E7D007C145F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		960C253B29AE399B006D9804 /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
 		96A95C492996848200162179 /* NutrionixAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrionixAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +118,7 @@
 				54BA328129967E7D007C145F /* InfoViewController.swift */,
 				96A95C492996848200162179 /* NutrionixAPI.swift */,
 				54BA327F29967E49007C145F /* PickerViewController.swift */,
+				960C253B29AE399B006D9804 /* MenuViewCell.swift */,
 				54BA327D29967E27007C145F /* FavoriteViewController.swift */,
 				5499889829952CEE00A7FABB /* Assets.xcassets */,
 				5499889A29952CEE00A7FABB /* LaunchScreen.storyboard */,
@@ -278,6 +281,7 @@
 				5499888D29952CEE00A7FABB /* AppDelegate.swift in Sources */,
 				54BA328229967E7D007C145F /* InfoViewController.swift in Sources */,
 				5499888F29952CEE00A7FABB /* SceneDelegate.swift in Sources */,
+				960C253C29AE399B006D9804 /* MenuViewCell.swift in Sources */,
 				5499889729952CEE00A7FABB /* GroupApp.xcdatamodeld in Sources */,
 				54BA327E29967E27007C145F /* FavoriteViewController.swift in Sources */,
 				96A95C4A2996848200162179 /* NutrionixAPI.swift in Sources */,
