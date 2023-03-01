@@ -73,20 +73,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gk5-ji-mrZ">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gk5-ji-mrZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="170"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3T7-M4-r91">
-                                                            <rect key="frame" x="0.0" y="0.0" width="194" height="170"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="191.66666666666666" height="170"/>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="30i-rh-K1Z">
-                                                            <rect key="frame" x="194" y="0.0" width="199" height="170"/>
+                                                            <rect key="frame" x="201.66666666666663" y="0.0" width="191.33333333333337" height="170"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r0q-UB-Kmh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="199" height="170"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
-                                                                </textField>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cY5-Nf-qJK">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="191.33333333333334" height="129.66666666666666"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2r5-zo-JE5">
+                                                                    <rect key="frame" x="0.0" y="149.66666666666666" width="191.33333333333334" height="20.333333333333343"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
@@ -100,8 +107,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="caloriesOutlet" destination="2r5-zo-JE5" id="3h4-rK-Dh5"/>
                                             <outlet property="imageItem" destination="3T7-M4-r91" id="bfq-Hy-70N"/>
-                                            <outlet property="nameItemOutlet" destination="r0q-UB-Kmh" id="clz-BB-XkM"/>
+                                            <outlet property="nameItemOutlet" destination="cY5-Nf-qJK" id="ghg-fK-9uv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -136,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2169" y="4"/>
+            <point key="canvasLocation" x="2168.7022900763359" y="3.5211267605633805"/>
         </scene>
         <!--Favorite Food-->
         <scene sceneID="nIy-km-fan">
