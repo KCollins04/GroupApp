@@ -8,18 +8,18 @@
 import UIKit
 
 class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    @IBOutlet weak var activeIndicatorOutlet: UIActivityIndicatorView!
     
     
 
     @IBOutlet weak var cellTableViewOutlet: UITableView!
-    
     var menu: [foodItem] = []
+    
+    
     override func viewDidLoad() {
         cellTableViewOutlet.delegate = self
         cellTableViewOutlet.dataSource = self
-
-
+        activeIndicatorOutlet.startAnimating()
     }
     
     
@@ -35,15 +35,17 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let foodItem = menu[indexPath.row]
         cell.nameItemOutlet?.text = foodItem.item_name
+        cell.caloriesOutlet?.text = "Calories:\(foodItem.calories)"
+        
         return cell
     }
   
     
-    @IBAction func randomAction(_ sender: UIBarButtonItem) {
-    }
-    
     func menuLoaded(){
         cellTableViewOutlet.reloadData()
+        activeIndicatorOutlet.stopAnimating()
     }
     
+  
+
 }
