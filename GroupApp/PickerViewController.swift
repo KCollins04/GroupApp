@@ -11,9 +11,10 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var activeIndicatorOutlet: UIActivityIndicatorView!
     
     
-
+    
     @IBOutlet weak var cellTableViewOutlet: UITableView!
     var menu: [foodItem] = []
+    var sortedFood = sortedMenu(appetizer: [], entre: [], dessert: [], drink: [])
     
     
     override func viewDidLoad() {
@@ -39,13 +40,45 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return cell
     }
-  
     
-    func menuLoaded(){
+    @IBAction func optionChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            print("appetizer")
+            menu = sortedFood.appetizer!
+            break
+        case 1:
+            print("entre")
+            menu = sortedFood.entre!
+            break
+        case 2:
+            print("dessert")
+            menu = sortedFood.dessert!
+            break
+        case 3:
+            print("drink")
+            menu = sortedFood.drink!
+        default:
+            print("ERROR")
+        }
         cellTableViewOutlet.reloadData()
         activeIndicatorOutlet.stopAnimating()
     }
     
-  
-
+    func menuLoaded(){
+        Task{
+            do{
+                // Sorts the menu, then replaces it with the default (appetizer) menu
+                try await sortedFood = sortMenu(menu)
+                menu = sortedFood.appetizer!
+                cellTableViewOutlet.reloadData()
+                activeIndicatorOutlet.stopAnimating()
+            } catch{
+                print(error)
+            }
+        }
+    }
+    
+    
+    
 }

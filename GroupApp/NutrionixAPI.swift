@@ -10,8 +10,8 @@ import Foundation
 struct foodItem: Codable{
     let calories: Double
     let item_id: String
-    let serving_qty: Int
-    let serving_unit: String
+    let serving_qty: Double?
+    let serving_unit: String?
     let item_name: String
 }
 
@@ -21,9 +21,9 @@ struct listReponse: Codable{
 }
 
 // Gets the list of menu items from a restauarant ID (from getRestaurant function)
-func getMenu(_ id: String) async throws -> [foodItem] { // TODO: Make asynchronous
+func getMenu(_ id: String) async throws -> [foodItem] {
     var menuItems: [foodItem] = []
-
+    
     let urlString = "https://www.nutritionix.com/nixapi/brands/\(id)/items/1?limit=15&search="
     let url = NSURL(string: urlString)!
     let request = NSMutableURLRequest(url: url as URL)
@@ -33,13 +33,15 @@ func getMenu(_ id: String) async throws -> [foodItem] { // TODO: Make asynchrono
     do{
         let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
         res = try JSONDecoder().decode(listReponse.self, from: data)
-        menuItems.append(contentsOf: res.items)
-        for page in 1...res.total_hits/15 + (res.total_hits % 15 == 0 ? 0 : 1){
+        
+        for page in 1...res.total_hits/15 + (res.total_hits % 15 == 0 ? 0 : 1){ // Creates a for loop that goes through every page of items on the menu
             let urlString = "https://www.nutritionix.com/nixapi/brands/\(id)/items/\(page)?limit=15&search="
             let url = NSURL(string: urlString)!
             let request = NSMutableURLRequest(url: url as URL)
             let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
             print("\(page) out of \(res.total_hits/15)")
+            
+            // Decodes the data from the API call to a struct and adds it to the output
             do {
                 let res = try JSONDecoder().decode(listReponse.self, from: data)
                 menuItems.append(contentsOf: res.items)
@@ -104,6 +106,102 @@ func getRestaurant(_ latitude: Double, _ longitude: Double, _ distance: Int = 50
         
     }
     
+}
+
+struct sortedMenu: Codable {
+    var appetizer: [foodItem]?
+    var entre: [foodItem]?
+    var dessert: [foodItem]?
+    var drink: [foodItem]?
+}
+
+
+
+
+struct classifications: Codable{
+    let id: String
+    let input: String
+    let prediction: String
+    let confidence: Float
+    
+}
+
+struct sortMenuResponse: Codable{
+    let id: String
+    let classifications: [classifications]
+}
+
+func sortMenu(_ input: [foodItem]) async throws -> sortedMenu {
+    var classifiedItems: [classifications] = []
+    do {
+        for index in stride(from: 0, through: input.count, by: 96){ // Loop through input array in 96 step increments
+            var inputJson: [String] = []
+            print(input.count)
+            print(index, " out of ", input.count)
+            
+            for subindex in index...(index+95 < input.count-1 ? index + 95 : input.count-1) { // Loop through a sub index of the input array, limiting it to the length of the input array's length. Adds them to inputJson to be sent to the classification API
+                
+                let item = input[subindex]
+                let jsonData = try JSONEncoder().encode(item)
+                let jsonString = String(data: jsonData, encoding: .utf8)!
+                inputJson.append(jsonString)
+            }
+            
+            let headers = [
+                "Authorization": "BEARER agy85Uta3sigozcEomm9fesnlSetwycsDGEzoXCW", // TODO: .env token
+                "Content-Type": "application/json"
+            ]
+            
+            
+            let parameters = [
+                "model": "562d8f7b-3a68-45ab-ab34-9db7cf9a0332-ft", // TODO: .env model ID
+                "inputs": inputJson
+            ] as [String : Any]
+            
+            let postData = try JSONSerialization.data(withJSONObject: parameters, options: [])
+            
+            let request = NSMutableURLRequest(url: NSURL(string: "https://api.cohere.ai/v1/classify")! as URL,
+                                              cachePolicy: .useProtocolCachePolicy,
+                                              timeoutInterval: 30.0)
+            request.httpMethod = "POST"
+            request.allHTTPHeaderFields = headers
+            request.httpBody = postData as Data
+            var res: sortMenuResponse
+            
+            
+            let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
+            res = try JSONDecoder().decode(sortMenuResponse.self, from: data)
+            
+            classifiedItems.append(contentsOf: res.classifications) // Adds the data from API call to a combined array
         }
+        
+        var output = sortedMenu(appetizer: [], entre: [], dessert: [], drink: [])
+        
+        // Loops through combined array to add classified items to their assigned arrays
+        for item in classifiedItems {
+            let food = try JSONDecoder().decode(foodItem.self, from: item.input.data(using: .utf8)!)
+            
+            switch item.prediction {
+            case "appetizer":
+                output.appetizer?.append(food)
+            case "entre":
+                output.entre?.append(food)
+            case "dessert":
+                output.dessert?.append(food)
+            case "drink":
+                output.drink?.append(food)
+            default:
+                output.entre?.append(food)
+            }
+        }
+        
+        return output
+        
+    } catch {
+        print(error)
+        throw apiError.unknownError
+    }
+    
+}
 
 

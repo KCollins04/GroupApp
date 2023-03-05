@@ -63,7 +63,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="amW-JW-Hex">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="141" width="393" height="677"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="170" id="wvw-aY-PeT" customClass="MenuViewCell" customModule="GroupApp" customModuleProvider="target">
@@ -117,14 +117,29 @@
                                 <rect key="frame" x="0.0" y="386" width="393" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eq5-cq-spK">
+                                <rect key="frame" x="8" y="103" width="377" height="32"/>
+                                <segments>
+                                    <segment title="Appetizer"/>
+                                    <segment title="Entre"/>
+                                    <segment title="Dessert"/>
+                                    <segment title="Drink"/>
+                                </segments>
+                                <connections>
+                                    <action selector="optionChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="qF3-EJ-nO0"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="eq5-cq-spK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3st-yZ-sTx"/>
+                            <constraint firstItem="eq5-cq-spK" firstAttribute="centerX" secondItem="E84-uN-H6a" secondAttribute="centerX" id="BJe-up-3Ji"/>
                             <constraint firstItem="amW-JW-Hex" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Gne-cB-c3r"/>
                             <constraint firstItem="amW-JW-Hex" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Hmf-Sx-E0i"/>
+                            <constraint firstItem="amW-JW-Hex" firstAttribute="top" secondItem="eq5-cq-spK" secondAttribute="bottom" constant="7" id="U7k-R1-De6"/>
                             <constraint firstItem="amW-JW-Hex" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gEz-Bz-88S"/>
-                            <constraint firstItem="amW-JW-Hex" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qtI-m7-5Y1"/>
+                            <constraint firstItem="eq5-cq-spK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="iP6-bV-Yfd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MN3-iq-7uh"/>

@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-
+    
     @IBOutlet weak var restorantInputOutlet: UITextField!
     @IBOutlet weak var mapOutlet: MKMapView!
     var locationManager = CLLocationManager()
@@ -25,15 +25,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-        
-        // shows your location
-    
+                
         mapOutlet.showsUserLocation = false
         mapOutlet.delegate = self
         
         
     }
     
+    // Centers the map on the user's location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Current location of the user
         let center = locationManager.location!.coordinate
@@ -41,13 +40,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let region = MKCoordinateRegion(center: center, span: span)
         mapOutlet.setRegion(region, animated: true)
     }
-
+    
+    // Gets called when the info button is clicked on a pin
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMenu" {
             let controller = segue.destination as! PickerViewController
+            
+            // Waits to get the menu of the selected restaurant, then tells the PickerViewController that the menu has loaded
             Task{
                 do{
-                    controller.menu = try await getMenu("513fbc1283aa2dc80c000021")
+                    controller.menu = try await getMenu(latestId)
                     controller.menuLoaded()
                 } catch{
                     print(error)
@@ -55,31 +57,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             }
         }
     }
-
-  
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            // 2
-            let identifier = "Restuarant"
-            // 3
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            if annotationView == nil {
-                //4
-                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView?.canShowCallout = true
-                // 5
-                let btn = UIButton(type: .detailDisclosure)
-                annotationView?.rightCalloutAccessoryView = btn
-                btn.tag = Int(annotation.subtitle!!)!
-                btn.addTarget(self, action: #selector(restaurantClicked), for: .touchDown)
-            } else {
-                // 6
-                annotationView?.annotation = annotation
-            }
-            return annotationView
-        }
     
+    // Defines what annotations should look like
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "Restuarant"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            
+            // Adds a button to the popup that calls the restaurantClicked fucntion
+            let btn = UIButton(type: .detailDisclosure)
+            annotationView?.rightCalloutAccessoryView = btn
+            btn.tag = Int(annotation.subtitle!!)!
+            btn.addTarget(self, action: #selector(restaurantClicked), for: .touchDown)
+        } else {
+            annotationView?.annotation = annotation
+        }
+        return annotationView
+    }
+    
+    var latestId = "" // Stores the last restaurant that was selected
     @objc func restaurantClicked(_ button: UIButton) {
-        print("button pressed", nearbyRestaurants[button.tag])
+        latestId = nearbyRestaurants[button.tag].brand_id
         self.performSegue(withIdentifier: "showMenu", sender: self)
     }
     
@@ -93,16 +94,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 let nearby = try await getRestaurant(coordinates.latitude, coordinates.longitude,1000,50)
                 nearbyRestaurants = nearby
                 for (index, item) in nearby.enumerated() {
-                    print(item.name,item.lat,item.lng,item.id)
                     let location = CLLocation(latitude: item.lat,longitude: item.lng)
                     let newPin = MKPointAnnotation()
-                        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-
-                        //set region on the map
+                    let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                    let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
                     
-                    
-                        mapOutlet.setRegion(region, animated: true)
+                    mapOutlet.setRegion(region, animated: true)
                     // search item and it will pin that item
                     if restorantInputOutlet.text == item.name || restorantInputOutlet.text == ""{
                         newPin.coordinate = location.coordinate
@@ -110,14 +107,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         newPin.subtitle = String(index)
                         mapOutlet.addAnnotation(newPin)
                     }
-                   
-                    
-
-                      
                 }
-            
-               
-                
             }
             catch{
                 print(error)
