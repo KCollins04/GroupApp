@@ -162,7 +162,7 @@ func sortMenu(_ input: [foodItem]) async throws -> sortedMenu {
             
             let request = NSMutableURLRequest(url: NSURL(string: "https://api.cohere.ai/v1/classify")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
-                                              timeoutInterval: 30.0)
+                                              timeoutInterval: 60.0)
             request.httpMethod = "POST"
             request.allHTTPHeaderFields = headers
             request.httpBody = postData as Data
