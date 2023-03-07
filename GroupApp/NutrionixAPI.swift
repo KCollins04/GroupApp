@@ -108,6 +108,66 @@ func getRestaurant(_ latitude: Double, _ longitude: Double, _ distance: Int = 50
     
 }
 
+struct itemInfo: Codable{
+    let nf_calories: Double?
+    let nf_calories_from_fat: Double?
+    let nf_total_fat: Double?
+    let nf_saturated_fat: Double?
+    let nf_trans_fatty_acid: Double?
+    let nf_polyunsaturated_fat: Double?
+    let nf_monounsaturated_fat: Double?
+    let nf_cholesterol: Double?
+    let nf_sodium: Double?
+    let nf_total_carbohydrate: Double?
+    let nf_dietary_fiber: Double?
+    let nf_sugars: Double?
+    let nf_added_sugars: Double?
+    let nf_protein: Double?
+    let nf_potassium: Double?
+    let nf_vitamin_a_dv: Double?
+    let nf_vitamin_c_dv: Double?
+    let nf_vitamin_d_dv: Double?
+    let nf_vitamin_d_mcg: Double?
+    let nf_calcium_dv: Double?
+    let nf_calcium_mg: Double?
+    let nf_iron_dv: Double?
+    let nf_iron_mg: Double?
+    
+    struct trackFood: Codable{
+        let nf_total_fat: Double?
+        let nf_saturated_fat: Double?
+        let nf_sodium: Double?
+        let nf_total_carbohydrate: Double?
+        let nf_dietary_fiber: Double?
+        let nf_sugars: Double?
+        let nf_protein: Double?
+        let nf_potassium: Double?
+    }
+    
+    let track_food = trackFood()
+}
+
+func getItemInfo(_ id: String) async throws -> itemInfo {
+    
+    let urlString = "https://www.nutritionix.com/nixapi/items/" + id
+    let url = NSURL(string: urlString)!
+    let request = NSMutableURLRequest(url: url as URL)
+    
+    var res: itemInfo
+    
+    do{
+        let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
+        res = try JSONDecoder().decode(itemInfo.self, from: data)
+        
+        
+        return res
+    } catch{
+        print(error)
+        throw apiError.unknownError
+        
+    }
+}
+
 struct sortedMenu: Codable {
     var appetizer: [foodItem]?
     var entre: [foodItem]?
