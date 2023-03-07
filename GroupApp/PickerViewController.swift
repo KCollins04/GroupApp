@@ -79,10 +79,22 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    var name = ""
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        name = menu[indexPath.row].item_name
+        performSegue(withIdentifier: "myCell", sender: self)
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "myCell" {
+            let controller = segue.destination as! InfoViewController
+            controller.infoName = name
+            // Waits to get the menu of the selected restaurant, then tells the PickerViewController that the menu has loaded
+            
+            }
+        }
+    }
     
-    
-}
+

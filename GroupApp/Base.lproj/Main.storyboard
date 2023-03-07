@@ -146,7 +146,7 @@
                     <connections>
                         <outlet property="activeIndicatorOutlet" destination="E84-uN-H6a" id="1NW-MW-cq2"/>
                         <outlet property="cellTableViewOutlet" destination="amW-JW-Hex" id="Sx7-eP-Fbl"/>
-                        <segue destination="iLZ-yH-BEK" kind="show" id="cYY-9L-U7p"/>
+                        <segue destination="iLZ-yH-BEK" kind="show" identifier="myCell" id="cYY-9L-U7p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -161,43 +161,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vBf-fH-bGe">
-                                <rect key="frame" x="34" y="119" width="325" height="172"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Information of that item" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="65L-0h-hzo">
-                                <rect key="frame" x="34" y="323" width="325" height="210"/>
+                                <rect key="frame" x="34" y="221" width="325" height="411"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HH-jI-xYv">
-                                <rect key="frame" x="76" y="589" width="89" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9NG-pD-sBN">
+                                <rect key="frame" x="40" y="114" width="312" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Favorite "/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJR-zn-Vre">
-                                <rect key="frame" x="213" y="589" width="98" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="order"/>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sv3-9P-Md6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Nb3-b2-yz6">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the Item" textAlignment="natural" minimumFontSize="17" id="rai-ZU-zZd">
-                            <rect key="frame" x="127.00000000000001" y="5" width="139.33333333333337" height="34"/>
+                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Serving" textAlignment="natural" minimumFontSize="17" id="hdP-nU-Vki">
+                            <rect key="frame" x="61" y="5" width="271" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="nLQ-Yq-z7i">
+                            <connections>
+                                <action selector="addAction:" destination="iLZ-yH-BEK" id="f3Q-Uh-RKh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="infoTextOutlet" destination="65L-0h-hzo" id="mD1-ec-nvo"/>
+                        <outlet property="itemNameOutlet" destination="9NG-pD-sBN" id="brd-Ih-jRg"/>
+                        <outlet property="servingTextOutlet" destination="hdP-nU-Vki" id="n9q-Gi-ZhK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rri-2w-aMI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
