@@ -17,7 +17,6 @@
 		549988A729952CEF00A7FABB /* GroupAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549988A629952CEF00A7FABB /* GroupAppTests.swift */; };
 		549988B129952CEF00A7FABB /* GroupAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549988B029952CEF00A7FABB /* GroupAppUITests.swift */; };
 		549988B329952CEF00A7FABB /* GroupAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549988B229952CEF00A7FABB /* GroupAppUITestsLaunchTests.swift */; };
-		54BA327E29967E27007C145F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA327D29967E27007C145F /* FavoriteViewController.swift */; };
 		54BA328029967E49007C145F /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA327F29967E49007C145F /* PickerViewController.swift */; };
 		54BA328229967E7D007C145F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA328129967E7D007C145F /* InfoViewController.swift */; };
 		960C253C29AE399B006D9804 /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C253B29AE399B006D9804 /* MenuViewCell.swift */; };
@@ -56,7 +55,6 @@
 		549988AC29952CEF00A7FABB /* GroupAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		549988B029952CEF00A7FABB /* GroupAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAppUITests.swift; sourceTree = "<group>"; };
 		549988B229952CEF00A7FABB /* GroupAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		54BA327D29967E27007C145F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		54BA327F29967E49007C145F /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		54BA328129967E7D007C145F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		960C253B29AE399B006D9804 /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
@@ -113,13 +111,12 @@
 			children = (
 				5499888C29952CEE00A7FABB /* AppDelegate.swift */,
 				5499888E29952CEE00A7FABB /* SceneDelegate.swift */,
-				5499889029952CEE00A7FABB /* ViewController.swift */,
-				54BA328129967E7D007C145F /* InfoViewController.swift */,
 				96A95C492996848200162179 /* NutrionixAPI.swift */,
+				5499889029952CEE00A7FABB /* ViewController.swift */,
 				54BA327F29967E49007C145F /* PickerViewController.swift */,
+				54BA328129967E7D007C145F /* InfoViewController.swift */,
 				5499889229952CEE00A7FABB /* Main.storyboard */,
 				960C253B29AE399B006D9804 /* MenuViewCell.swift */,
-				54BA327D29967E27007C145F /* FavoriteViewController.swift */,
 				5499889829952CEE00A7FABB /* Assets.xcassets */,
 				5499889A29952CEE00A7FABB /* LaunchScreen.storyboard */,
 				5499889D29952CEE00A7FABB /* Info.plist */,
@@ -283,7 +280,6 @@
 				5499888F29952CEE00A7FABB /* SceneDelegate.swift in Sources */,
 				960C253C29AE399B006D9804 /* MenuViewCell.swift in Sources */,
 				5499889729952CEE00A7FABB /* GroupApp.xcdatamodeld in Sources */,
-				54BA327E29967E27007C145F /* FavoriteViewController.swift in Sources */,
 				96A95C4A2996848200162179 /* NutrionixAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
