@@ -144,7 +144,9 @@ struct itemInfo: Codable{
         let nf_potassium: Double?
     }
     
-    let track_food = trackFood()
+    let track_food: trackFood?
+    
+    
 }
 
 func getItemInfo(_ id: String) async throws -> itemInfo {
@@ -158,7 +160,6 @@ func getItemInfo(_ id: String) async throws -> itemInfo {
     do{
         let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
         res = try JSONDecoder().decode(itemInfo.self, from: data)
-        
         
         return res
     } catch{
@@ -205,6 +206,7 @@ func sortMenu(_ input: [foodItem]) async throws -> sortedMenu {
                 let jsonData = try JSONEncoder().encode(item)
                 let jsonString = String(data: jsonData, encoding: .utf8)!
                 inputJson.append(jsonString)
+                print(jsonString)
             }
             
             let headers = [
