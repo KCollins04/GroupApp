@@ -12,12 +12,12 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var itemNameOutlet: UILabel!
     @IBOutlet weak var servingTextOutlet: UITextField!
     @IBOutlet weak var infoTextOutlet: UITextView!
-    var itemInfo: foodItem!
+    var itemInfo: (foodItem,itemInfo)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemNameOutlet.text = itemInfo.item_name
-        infoTextOutlet.text = "Calories: \(itemInfo.calories) \n Serving Quabtity: \(itemInfo.serving_qty!) \(itemInfo.serving_unit!)"
+        itemNameOutlet.text = itemInfo.0.item_name
+        infoTextOutlet.text = "Calories: \(itemInfo.0.calories) \n Serving Quabtity: \(itemInfo.0.serving_qty!) \(itemInfo.0.serving_unit!)"
         // Do any additional setup after loading the view.
     }
     

@@ -79,11 +79,19 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    var food: foodItem!
+    var food: (foodItem,itemInfo)!
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        food = menu[indexPath.row]
-        performSegue(withIdentifier: "myCell", sender: self)
+        Task{
+            do{
+                let foodItem = menu[indexPath.row]
+                try await food = (foodItem, getItemInfo(foodItem.item_id))
+                performSegue(withIdentifier: "myCell", sender: self)
+            }
+            catch{
+                print(error)
+            }
+        }
         
     }
     
