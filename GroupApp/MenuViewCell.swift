@@ -13,4 +13,22 @@ class MenuViewCell: UITableViewCell {
     
     @IBOutlet weak var caloriesOutlet: UILabel!
     
+    var addedToCart = false
+    
+    @IBAction func addButtonPressed(_ sender: UIButton) {
+        if(addedToCart){
+            sender.setImage(UIImage(systemName: "star"), for: .normal)
+            //unsave()
+        } else{
+            sender.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            //save()
+        }
+        addedToCart.toggle()
+        
+        print(addedToCart)
+        
+        
+        
+        
+    }
 }
