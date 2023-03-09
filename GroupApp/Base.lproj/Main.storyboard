@@ -39,7 +39,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="lnR-Eu-jsk">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="lnR-Eu-jsk">
                             <connections>
                                 <action selector="rearchAction:" destination="B0K-k4-C8V" id="3Wi-7z-IeP"/>
                             </connections>
@@ -54,6 +54,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCw-2U-Z9J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1110.6870229007634" y="3.5211267605633805"/>
+        </scene>
+        <!--Cart View Controller-->
+        <scene sceneID="HO6-Pn-N4E">
+            <objects>
+                <viewController id="WOc-Pf-CWu" customClass="CartViewController" customModule="GroupApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pnv-yz-rZW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fVh-2q-2kd">
+                                <rect key="frame" x="0.0" y="103" width="393" height="631"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cD5-Jw-652">
+                                <rect key="frame" x="0.0" y="742" width="393" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IIw-7w-NZ0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fVh-2q-2kd" firstAttribute="top" secondItem="IIw-7w-NZ0" secondAttribute="top" id="1Rm-Rz-k63"/>
+                            <constraint firstItem="fVh-2q-2kd" firstAttribute="leading" secondItem="IIw-7w-NZ0" secondAttribute="leading" id="Glx-mv-NNc"/>
+                            <constraint firstItem="IIw-7w-NZ0" firstAttribute="trailing" secondItem="fVh-2q-2kd" secondAttribute="trailing" id="TZk-BL-fJf"/>
+                            <constraint firstItem="IIw-7w-NZ0" firstAttribute="bottom" secondItem="fVh-2q-2kd" secondAttribute="bottom" constant="84" id="ab3-dw-vfi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eTX-ua-HKM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9po-0w-ds1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2168.7022900763359" y="-656.33802816901414"/>
         </scene>
         <!--Picker View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -153,7 +185,13 @@
                             <constraint firstItem="eq5-cq-spK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="iP6-bV-Yfd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="MN3-iq-7uh"/>
+                    <navigationItem key="navigationItem" id="MN3-iq-7uh">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="organize" id="aRV-Ic-hId">
+                            <connections>
+                                <segue destination="WOc-Pf-CWu" kind="show" id="PDd-UA-Gvv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activeIndicatorOutlet" destination="E84-uN-H6a" id="1NW-MW-cq2"/>
                         <outlet property="cellTableViewOutlet" destination="amW-JW-Hex" id="Sx7-eP-Fbl"/>
