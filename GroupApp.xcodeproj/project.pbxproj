@@ -20,6 +20,7 @@
 		54BA328029967E49007C145F /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA327F29967E49007C145F /* PickerViewController.swift */; };
 		54BA328229967E7D007C145F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA328129967E7D007C145F /* InfoViewController.swift */; };
 		960C253C29AE399B006D9804 /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960C253B29AE399B006D9804 /* MenuViewCell.swift */; };
+		962851D829BA1D7500ABA20D /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962851D729BA1D7500ABA20D /* CartViewController.swift */; };
 		96A95C4A2996848200162179 /* NutrionixAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A95C492996848200162179 /* NutrionixAPI.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		54BA327F29967E49007C145F /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		54BA328129967E7D007C145F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		960C253B29AE399B006D9804 /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
+		962851D729BA1D7500ABA20D /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		96A95C492996848200162179 /* NutrionixAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrionixAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 				5499889029952CEE00A7FABB /* ViewController.swift */,
 				54BA327F29967E49007C145F /* PickerViewController.swift */,
 				54BA328129967E7D007C145F /* InfoViewController.swift */,
+				962851D729BA1D7500ABA20D /* CartViewController.swift */,
 				5499889229952CEE00A7FABB /* Main.storyboard */,
 				960C253B29AE399B006D9804 /* MenuViewCell.swift */,
 				5499889829952CEE00A7FABB /* Assets.xcassets */,
@@ -280,6 +283,7 @@
 				5499888F29952CEE00A7FABB /* SceneDelegate.swift in Sources */,
 				960C253C29AE399B006D9804 /* MenuViewCell.swift in Sources */,
 				5499889729952CEE00A7FABB /* GroupApp.xcdatamodeld in Sources */,
+				962851D829BA1D7500ABA20D /* CartViewController.swift in Sources */,
 				96A95C4A2996848200162179 /* NutrionixAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
