@@ -7,6 +7,8 @@
 
 import UIKit
 
+var order: [String:(foodItem,Int)] = [:] // [ID:(item, count)]
+
 class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var activeIndicatorOutlet: UIActivityIndicatorView!
     
@@ -35,6 +37,7 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         let foodItem = menu[indexPath.row]
+        cell.food = foodItem
         cell.nameItemOutlet?.text = foodItem.item_name
         cell.caloriesOutlet?.text = "Calories:\(foodItem.calories)"
         

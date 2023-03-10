@@ -7,14 +7,34 @@
 
 import UIKit
 
-class CartViewController: UIViewController {
+class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var orderTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        orderTableView.delegate = self
+        orderTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return order.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as? MenuViewCell else {print("error")
+            
+            return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "ItemCell")
+        }
+        
+        let foodItem = order[indexPath.row]
+        cell.food = foodItem
+        cell.nameItemOutlet?.text = foodItem.item_name
+        cell.caloriesOutlet?.text = "Calories:\(foodItem.calories)"
+        
+        return cell
+    }
 
     /*
     // MARK: - Navigation
