@@ -28,7 +28,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "ItemCell")
         }
         
-        let foodItem = order[indexPath.row]
+        let foodItem = Array(order.values)[indexPath.row].0
         cell.food = foodItem
         cell.nameItemOutlet?.text = foodItem.item_name
         cell.caloriesOutlet?.text = "Calories:\(foodItem.calories)"
