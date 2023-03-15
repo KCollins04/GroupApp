@@ -138,6 +138,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addButton" destination="NQW-TY-iVF" id="fnQ-Ml-0pq"/>
                                             <outlet property="caloriesOutlet" destination="N8R-TL-8lR" id="CKV-2a-dsQ"/>
                                             <outlet property="nameItemOutlet" destination="gQY-HV-Kbk" id="axZ-ZA-86L"/>
                                             <outlet property="servingsInput" destination="Ajy-lD-i0e" id="9xz-HF-TtW"/>

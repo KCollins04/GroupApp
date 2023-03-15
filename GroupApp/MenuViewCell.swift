@@ -11,9 +11,13 @@ class MenuViewCell: UITableViewCell {
   
     @IBOutlet weak var nameItemOutlet: UILabel!
     
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var caloriesOutlet: UILabel!
     
     @IBOutlet weak var servingsInput: UITextField!
+    
+    weak var parentTableView: UITableView?
+    
     var addedToCart = false
     var food: foodItem!
     
@@ -23,6 +27,10 @@ class MenuViewCell: UITableViewCell {
             servingsInput.isHidden = true
             order[food.item_id] = nil
             //unsave()
+            
+            if((parentTableView) != nil){
+                parentTableView?.reloadData()
+            }
         } else{
             sender.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
             //servingsInput.isHidden = false
