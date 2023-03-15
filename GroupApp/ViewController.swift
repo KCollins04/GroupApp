@@ -75,6 +75,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         } else {
             annotationView?.annotation = annotation
         }
+        
+        
+        
         return annotationView
     }
     
@@ -82,6 +85,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @objc func restaurantClicked(_ button: UIButton) {
         latestId = nearbyRestaurants[button.tag].brand_id
         self.performSegue(withIdentifier: "showMenu", sender: self)
+        
     }
     
     //search Restorant
@@ -114,9 +118,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             }
         }
     }
-    
-    
-    
-    
+    //https://www.youtube.com/watch?v=DHpL8yz6ot0
 }
+
+
 
