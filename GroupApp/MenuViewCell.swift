@@ -18,6 +18,8 @@ class MenuViewCell: UITableViewCell {
     
     weak var parentTableView: UITableView?
     
+    var cellIndexPath: IndexPath?
+    
     var addedToCart = false
     var food: foodItem!
     
@@ -26,6 +28,8 @@ class MenuViewCell: UITableViewCell {
             sender.setImage(UIImage(systemName: "plus.circle"), for: .normal)
             servingsInput.isHidden = true
             order[food.item_id] = nil
+            menu[cellIndexPath!.row].addedtoCart = false
+
             //unsave()
             
             if((parentTableView) != nil){
@@ -35,6 +39,7 @@ class MenuViewCell: UITableViewCell {
             sender.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
             //servingsInput.isHidden = false
             order[food.item_id] = (food,1)
+            menu[cellIndexPath!.row].addedtoCart = true
             //save()
         }
         

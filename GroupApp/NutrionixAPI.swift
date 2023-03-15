@@ -13,6 +13,7 @@ struct foodItem: Codable{
     let serving_qty: Double?
     let serving_unit: String?
     let item_name: String
+    var addedtoCart: Bool?
 }
 
 struct listReponse: Codable{

@@ -8,6 +8,7 @@
 import UIKit
 
 var order: [String:(foodItem,Int)] = [:] // [ID:(item, count)]
+var menu: [foodItem] = []
 
 class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var activeIndicatorOutlet: UIActivityIndicatorView!
@@ -15,7 +16,6 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBOutlet weak var cellTableViewOutlet: UITableView!
-    var menu: [foodItem] = []
     var sortedFood = sortedMenu(appetizer: [], entre: [], dessert: [], drink: [])
     
     
@@ -40,7 +40,8 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.food = foodItem
         cell.nameItemOutlet?.text = foodItem.item_name
         cell.caloriesOutlet?.text = "Calories:\(foodItem.calories)"
-        
+        cell.addButton?.setImage(UIImage(systemName: (foodItem.addedtoCart ?? false ? "minus.circle.fill" : "plus.circle.empty")), for: .normal)
+
         return cell
     }
     

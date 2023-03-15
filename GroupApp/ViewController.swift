@@ -49,7 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             // Waits to get the menu of the selected restaurant, then tells the PickerViewController that the menu has loaded
             Task{
                 do{
-                    controller.menu = try await getMenu(latestId)
+                    menu = try await getMenu(latestId)
                     controller.menuLoaded()
                 } catch{
                     print(error)

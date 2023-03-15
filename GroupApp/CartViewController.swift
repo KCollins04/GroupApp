@@ -34,6 +34,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.caloriesOutlet?.text = "Calories:\(foodItem.calories)"
         cell.addButton.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
         cell.parentTableView = tableView
+        cell.cellIndexPath = indexPath
         return cell
     }
 
