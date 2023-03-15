@@ -35,21 +35,21 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         itemNameOutlet.text = itemInfo.0.item_name
-        servinfSize.text = "\(itemInfo.0.serving_qty!)"
-        caloriesLabel.text = "\(itemInfo.1.nf_calories!)"
-        totalFat.text = "\(itemInfo.1.nf_total_fat!)g"
-        sFat.text = "\(itemInfo.1.nf_saturated_fat!)g"
-        tFat.text = "\(itemInfo.1.nf_trans_fatty_acid!)g"
-        cholesterolLabel.text = "\(itemInfo.1.nf_cholesterol!)mg"
-        sodiumLabel.text = "\(itemInfo.1.nf_sodium!)g"
-        totalCarbohydrateLabel.text = "\(itemInfo.1.nf_total_carbohydrate!)g"
-        dieFiberLabel.text = "\(itemInfo.1.nf_dietary_fiber!)g"
-        sugarLabel.text = "\(itemInfo.1.nf_sugars!)g"
-        proteinLabel.text = "\(itemInfo.1.nf_protein!)g"
-        vitaminALabel.text = "\(itemInfo.1.nf_vitamin_a_dv!)mcg"
-        vitaminCLabel.text = "\(itemInfo.1.nf_vitamin_c_dv!)mcg"
-        ironLabel.text = "\(itemInfo.1.nf_iron_dv!)mg"
-        calciumLabel.text = "\(itemInfo.1.nf_calcium_dv!)mg"
+        servinfSize.text = "\(itemInfo.0.serving_qty ?? 0.0)"
+        caloriesLabel.text = "\(itemInfo.1.nf_calories ?? 0.0)"
+        totalFat.text = "\(itemInfo.1.nf_total_fat ?? 0.0)g"
+        sFat.text = "\(itemInfo.1.nf_saturated_fat ?? 0.0)g"
+        tFat.text = "\(itemInfo.1.nf_trans_fatty_acid ?? 0.0)g"
+        cholesterolLabel.text = "\(itemInfo.1.nf_cholesterol ?? 0.0)mg"
+        sodiumLabel.text = "\(itemInfo.1.nf_sodium ?? 0.0)g"
+        totalCarbohydrateLabel.text = "\(itemInfo.1.nf_total_carbohydrate ?? 0.0)g"
+        dieFiberLabel.text = "\(itemInfo.1.nf_dietary_fiber ?? 0.0)g"
+        sugarLabel.text = "\(itemInfo.1.nf_sugars ?? 0.0)g"
+        proteinLabel.text = "\(itemInfo.1.nf_protein ?? 0.0)g"
+        vitaminALabel.text = "\(itemInfo.1.nf_vitamin_a_dv ?? 0.0)mcg"
+        vitaminCLabel.text = "\(itemInfo.1.nf_vitamin_c_dv ?? 0.0)mcg"
+        ironLabel.text = "\(itemInfo.1.nf_iron_dv ?? 0.0)mg"
+        calciumLabel.text = "\(itemInfo.1.nf_calcium_dv ?? 0.0)mg"
 
 
     }
@@ -59,21 +59,21 @@ class InfoViewController: UIViewController {
         let serving = Double(servingTextOutlet.text!)
         
         itemNameOutlet.text = itemInfo.0.item_name
-        servinfSize.text = "\(serving! * itemInfo.0.serving_qty!)"
-        caloriesLabel.text = "\(serving! * itemInfo.1.nf_calories!)"
-        totalFat.text = "\(serving! * itemInfo.1.nf_total_fat!)g"
-        sFat.text = "\(serving! * itemInfo.1.nf_saturated_fat!)g"
-        tFat.text = "\(serving! * itemInfo.1.nf_trans_fatty_acid!)g"
-        cholesterolLabel.text = "\(serving! * itemInfo.1.nf_cholesterol!)mg"
-        sodiumLabel.text = "\(serving! * itemInfo.1.nf_sodium!)g"
-        totalCarbohydrateLabel.text = "\(serving! * itemInfo.1.nf_total_carbohydrate!)g"
-        dieFiberLabel.text = "\(serving! * itemInfo.1.nf_dietary_fiber!)g"
-        sugarLabel.text = "\(serving! * itemInfo.1.nf_sugars!)g"
-        proteinLabel.text = "\(serving! * itemInfo.1.nf_protein!)g"
-        vitaminALabel.text = "\(serving! * itemInfo.1.nf_vitamin_a_dv!)mcg"
-        vitaminCLabel.text = "\(serving! * itemInfo.1.nf_vitamin_c_dv!)mcg"
-        ironLabel.text = "\(serving! * itemInfo.1.nf_iron_dv!)mg"
-        calciumLabel.text = "\(serving! * itemInfo.1.nf_calcium_dv!)mg"
+        servinfSize.text = "\(serving! * (itemInfo.0.serving_qty ?? 0.0))"
+        caloriesLabel.text = "\(serving! * (itemInfo.1.nf_calories ?? 0.0))"
+        totalFat.text = "\(serving! * (itemInfo.1.nf_total_fat ?? 0.0))g"
+        sFat.text = "\(serving! * (itemInfo.1.nf_saturated_fat ?? 0.0))g"
+        tFat.text = "\(serving! * (itemInfo.1.nf_trans_fatty_acid ?? 0.0))g"
+        cholesterolLabel.text = "\(serving! * (itemInfo.1.nf_cholesterol ?? 0.0))mg"
+        sodiumLabel.text = "\(serving! * (itemInfo.1.nf_sodium ?? 0.0))g"
+        totalCarbohydrateLabel.text = "\(serving! * (itemInfo.1.nf_total_carbohydrate ?? 0.0))g"
+        dieFiberLabel.text = "\(serving! * (itemInfo.1.nf_dietary_fiber ?? 0.0))g"
+        sugarLabel.text = "\(serving! * (itemInfo.1.nf_sugars ?? 0.0))g"
+        proteinLabel.text = "\(serving! * (itemInfo.1.nf_protein ?? 0.0))g"
+        vitaminALabel.text = "\(serving! * (itemInfo.1.nf_vitamin_a_dv ?? 0.0))mcg"
+        vitaminCLabel.text = "\(serving! * (itemInfo.1.nf_vitamin_c_dv ?? 0.0))mcg"
+        ironLabel.text = "\(serving! * (itemInfo.1.nf_iron_dv ?? 0.0))mg"
+        calciumLabel.text = "\(serving! * (itemInfo.1.nf_calcium_dv ?? 0.0))mg"
    
         
     }
