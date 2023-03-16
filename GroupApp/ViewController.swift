@@ -66,6 +66,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if annotationView == nil {
             annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView?.canShowCallout = true
+            let url = URL(string: "https://d1r9wva3zcpswd.cloudfront.net/533d7b89bf66c42a2eec2a8e.png")
+            let data =  try? Data(contentsOf: url!)
+            
+            let pinImage = UIImage(data: data!)
+                   let size = CGSize(width: 50, height: 50)
+                   UIGraphicsBeginImageContext(size)
+                   pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                   let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+
+                   annotationView?.image = resizedImage
+            
+
+
+
+           
+            
             
             // Adds a button to the popup that calls the restaurantClicked fucntion
             let btn = UIButton(type: .detailDisclosure)
@@ -75,11 +91,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         } else {
             annotationView?.annotation = annotation
         }
-        
+
+
         
         
         return annotationView
     }
+    
+    
+
+    
+    
     
     var latestId = "" // Stores the last restaurant that was selected
     @objc func restaurantClicked(_ button: UIButton) {
@@ -118,7 +140,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             }
         }
     }
-    //https://www.youtube.com/watch?v=DHpL8yz6ot0
 }
 
 
