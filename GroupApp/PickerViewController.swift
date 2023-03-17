@@ -8,15 +8,15 @@
 import UIKit
 
 var order: [String:(foodItem,Int)] = [:] // [ID:(item, count)]
-var menu: [foodItem] = []
-
+var menu: [(foodItem,String,Int)] = []
+var sortedFood = sortedMenu(appetizer: [], entre: [], dessert: [], drink: [])
+var tempMenu: [foodItem] = []
 class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var activeIndicatorOutlet: UIActivityIndicatorView!
     
     
     
     @IBOutlet weak var cellTableViewOutlet: UITableView!
-    var sortedFood = sortedMenu(appetizer: [], entre: [], dessert: [], drink: [])
     
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "ItemCell")
         }
         
-        let foodItem = menu[indexPath.row]
+        let foodItem = menu[indexPath.row].0
         cell.food = foodItem
         cell.nameItemOutlet?.text = foodItem.item_name
         cell.caloriesOutlet?.text = "Calories:\(foodItem.calories)"
@@ -73,7 +73,7 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         Task{
             do{
                 // Sorts the menu, then replaces it with the default (appetizer) menu
-                try await sortedFood = sortMenu(menu)
+                try await sortedFood = sortMenu(tempMenu)
                 menu = sortedFood.appetizer!
                 cellTableViewOutlet.reloadData()
                 activeIndicatorOutlet.stopAnimating()
@@ -89,7 +89,7 @@ class PickerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         Task{
             do{
                 let foodItem = menu[indexPath.row]
-                try await food = (foodItem, getItemInfo(foodItem.item_id))
+                try await food = (foodItem.0, getItemInfo(foodItem.0.item_id))
                 performSegue(withIdentifier: "myCell", sender: self)
             }
             catch{

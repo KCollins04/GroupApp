@@ -170,11 +170,11 @@ func getItemInfo(_ id: String) async throws -> itemInfo {
     }
 }
 
-struct sortedMenu: Codable {
-    var appetizer: [foodItem]?
-    var entre: [foodItem]?
-    var dessert: [foodItem]?
-    var drink: [foodItem]?
+struct sortedMenu {
+    var appetizer: [(foodItem,String,Int)]?
+    var entre: [(foodItem,String,Int)]?
+    var dessert: [(foodItem,String,Int)]?
+    var drink: [(foodItem,String,Int)]?
 }
 
 
@@ -246,15 +246,15 @@ func sortMenu(_ input: [foodItem]) async throws -> sortedMenu {
             
             switch item.prediction {
             case "appetizer":
-                output.appetizer?.append(food)
+                output.appetizer!.append((food,"appetizer",output.appetizer!.count-1))
             case "entre":
-                output.entre?.append(food)
+                output.entre!.append((food,"entre",output.entre!.count-1))
             case "dessert":
-                output.dessert?.append(food)
+                output.dessert!.append((food,"dessert",output.dessert!.count-1))
             case "drink":
-                output.drink?.append(food)
+                output.drink!.append((food,"drink",output.drink!.count-1))
             default:
-                output.entre?.append(food)
+                output.entre!.append((food,"entre",output.entre!.count-1))
             }
         }
         
