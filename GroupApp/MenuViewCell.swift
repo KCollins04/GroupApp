@@ -28,7 +28,8 @@ class MenuViewCell: UITableViewCell {
             sender.setImage(UIImage(systemName: "plus.circle"), for: .normal)
             servingsInput.isHidden = true
             order[food.item_id] = nil
-            menu[cellIndexPath!.row].addedtoCart = false
+            //menu[cellIndexPath!.row].addedtoCart = false
+            (sortedMenu { $0[menu[cellIndexPath!.row].1] as? [foodItem]})[menu[cellIndexPath!.row].2].addedtoCart = false
 
             //unsave()
             
