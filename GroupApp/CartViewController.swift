@@ -32,7 +32,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.food = foodItem
         cell.nameItemOutlet?.text = foodItem.item_name
         cell.caloriesOutlet?.text = "Calories:\(foodItem.calories)"
-        cell.addButton.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
+        cell.counterLabel.text = "\(order[foodItem.item_id]!.1)"
         cell.parentTableView = tableView
         cell.cellIndexPath = indexPath
         return cell

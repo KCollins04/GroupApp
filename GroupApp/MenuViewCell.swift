@@ -23,30 +23,16 @@ class MenuViewCell: UITableViewCell {
     var addedToCart = false
     var food: foodItem!
     
-    @IBAction func addButtonPressed(_ sender: UIButton) {
-        if(addedToCart){
-            sender.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-            servingsInput.isHidden = true
+    @IBOutlet weak var counterLabel: UILabel!
+    @IBAction func stepperChanged(_ sender: UIStepper) {
+        if(sender.value == 0){
             order[food.item_id] = nil
-            menu[cellIndexPath!.row].addedtoCart = false
-
-            //unsave()
-            
-            if((parentTableView) != nil){
-                parentTableView?.reloadData()
-            }
+            counterLabel.text = "0"
         } else{
-            sender.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
-            //servingsInput.isHidden = false
-            order[food.item_id] = (food,1)
-            menu[cellIndexPath!.row].addedtoCart = true
-            //save()
+            order[food.item_id] = (food,Int(sender.value))
+            counterLabel.text = "\(sender.value)"
         }
-        
-        addedToCart.toggle()
-        
         print(order)
-        
         
         
         
