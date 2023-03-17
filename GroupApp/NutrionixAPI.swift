@@ -170,6 +170,30 @@ func getItemInfo(_ id: String) async throws -> itemInfo {
     }
 }
 
+struct brandInfo: Codable{
+    let logo: String?
+}
+
+func getBrandInfo(_ id: String) async throws -> brandInfo {
+    
+    let urlString = "https://www.nutritionix.com/nixapi/brands/" + id
+    let url = NSURL(string: urlString)!
+    let request = NSMutableURLRequest(url: url as URL)
+    
+    var res: brandInfo
+    
+    do{
+        let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
+        res = try JSONDecoder().decode(brandInfo.self, from: data)
+        
+        return res
+    } catch{
+        print(error)
+        throw apiError.unknownError
+        
+    }
+}
+
 struct sortedMenu {
     var appetizer: [(foodItem,String,Int)]?
     var entre: [(foodItem,String,Int)]?

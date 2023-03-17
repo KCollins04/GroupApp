@@ -64,7 +64,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         
         if annotationView == nil {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView?.canShowCallout = true
             let url = URL(string: "https://d1r9wva3zcpswd.cloudfront.net/533d7b89bf66c42a2eec2a8e.png")
             let data =  try? Data(contentsOf: url!)
@@ -131,6 +131,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         newPin.coordinate = location.coordinate
                         newPin.title = item.name
                         newPin.subtitle = String(index)
+                        
                         mapOutlet.addAnnotation(newPin)
                     }
                 }
