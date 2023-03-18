@@ -174,23 +174,23 @@ struct brandInfo: Codable{
     let logo: String?
 }
 
-func getBrandInfo(_ id: String) async throws -> brandInfo {
+func getBrandInfo(_ id: String) throws -> brandInfo {
     
     let urlString = "https://www.nutritionix.com/nixapi/brands/" + id
-    let url = NSURL(string: urlString)!
-    let request = NSMutableURLRequest(url: url as URL)
+    let url = URL(string: urlString)!
     
     var res: brandInfo
     
+    
+    
     do{
-        let (data, _) = try await URLSession.shared.data(for: request as URLRequest)
-        res = try JSONDecoder().decode(brandInfo.self, from: data)
-        
+        let data =  try? Data(contentsOf: url)
+        res = try JSONDecoder().decode(brandInfo.self, from: (data ?? "{logo: \"https://d2eawub7utcl6.cloudfront.net/images/nix-apple-grey.png\"}".data(using: .utf8))!)
         return res
     } catch{
         print(error)
-        throw apiError.unknownError
-        
+        res = brandInfo(logo: "https://d2eawub7utcl6.cloudfront.net/images/nix-apple-grey.png")
+        return res
     }
 }
 
@@ -231,7 +231,6 @@ func sortMenu(_ input: [foodItem]) async throws -> sortedMenu {
                 let jsonData = try JSONEncoder().encode(item)
                 let jsonString = String(data: jsonData, encoding: .utf8)!
                 inputJson.append(jsonString)
-                print(jsonString)
             }
             
             let headers = [

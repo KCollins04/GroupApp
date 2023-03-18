@@ -49,6 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             // Waits to get the menu of the selected restaurant, then tells the PickerViewController that the menu has loaded
             Task{
                 do{
+                    order = [:]
                     tempMenu = try await getMenu(latestId)
                     controller.menuLoaded()
                 } catch{
@@ -64,30 +65,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         
         if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.canShowCallout = true
-            let url = URL(string: "https://d1r9wva3zcpswd.cloudfront.net/533d7b89bf66c42a2eec2a8e.png")
-            let data =  try? Data(contentsOf: url!)
+            do{
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView?.canShowCallout = true
+                let id = nearbyRestaurants[Int(annotation.subtitle!!)!].brand_id
+                let url = URL(string: try getBrandInfo(id).logo!)
+                let data =  try? Data(contentsOf: url!)
+                
+                let pinImage = UIImage(data: data!)
+                let size = CGSize(width: 50, height: 50)
+                UIGraphicsBeginImageContext(size)
+                pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                
+                annotationView?.image = resizedImage
+                
+                
+                
+                
+                
+                
+                
+                // Adds a button to the popup that calls the restaurantClicked fucntion
+                let btn = UIButton(type: .detailDisclosure)
+                annotationView?.rightCalloutAccessoryView = btn
+                btn.tag = Int(annotation.subtitle!!)!
+                btn.addTarget(self, action: #selector(restaurantClicked), for: .touchDown)
+            } catch{
+                print(error)
+            }
             
-            let pinImage = UIImage(data: data!)
-                   let size = CGSize(width: 50, height: 50)
-                   UIGraphicsBeginImageContext(size)
-                   pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-                   let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-
-                   annotationView?.image = resizedImage
-            
-
-
-
-           
-            
-            
-            // Adds a button to the popup that calls the restaurantClicked fucntion
-            let btn = UIButton(type: .detailDisclosure)
-            annotationView?.rightCalloutAccessoryView = btn
-            btn.tag = Int(annotation.subtitle!!)!
-            btn.addTarget(self, action: #selector(restaurantClicked), for: .touchDown)
         } else {
             annotationView?.annotation = annotation
         }
@@ -117,7 +124,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let coordinates = locationManager.location!.coordinate
         Task{
             do{
-                let nearby = try await getRestaurant(coordinates.latitude, coordinates.longitude,1000,50)
+                let nearby = try await getRestaurant(coordinates.latitude, coordinates.longitude,1000,25)
                 nearbyRestaurants = nearby
                 for (index, item) in nearby.enumerated() {
                     let location = CLLocation(latitude: item.lat,longitude: item.lng)
@@ -131,7 +138,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         newPin.coordinate = location.coordinate
                         newPin.title = item.name
                         newPin.subtitle = String(index)
-                        
                         mapOutlet.addAnnotation(newPin)
                     }
                 }
